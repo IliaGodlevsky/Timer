@@ -38,7 +38,7 @@ namespace Timer.ViewModel
             TimerDisplay = TimerResources.DisplayDefaultView;
             LapResults = new ObservableCollection<LapResult>();
 
-            //iconHandler = new NotifyIconHandler();
+            iconHandler = new NotifyIconHandler();
             lapTimer = new LapTimer(interval: 5);
             lapTimer.DispatcherTimer.Tick += TimerEvent;
 
