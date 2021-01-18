@@ -110,6 +110,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TimerResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="bin\Debug\Timer.exe.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -118,11 +119,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="bin\Debug\stopwatch.ico" />
+    <Content Include="bin\Debug\Timer.exe" />
+    <Content Include="bin\Debug\Timer.pdb" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\lap.png" />
     <Resource Include="Resources\Images\start.png" />
     <Resource Include="Resources\Images\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
