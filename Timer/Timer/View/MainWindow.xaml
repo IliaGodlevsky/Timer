@@ -9,7 +9,7 @@
         Background="Blue">
     
     <Window.DataContext>
-        <viewmodel:MainWindowViewModel></viewmodel:MainWindowViewModel>
+        <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
 
     <Grid>
