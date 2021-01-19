@@ -20,7 +20,7 @@ namespace Timer.Model
             window.StateChanged += WindowStateChanged;
         }
 
-        private void NotifyIconDoubleClickEvent(object sender, MouseEventArgs e)
+        private void NotifyIconDoubleClickEvent(object sender, EventArgs e)
         {
             window.WindowState = WindowState.Normal;
         }
@@ -31,9 +31,6 @@ namespace Timer.Model
             {
                 case WindowState.Minimized:
                     window.ShowInTaskbar = false;
-                    icon.BalloonTipTitle = "Minimize successed";
-                    icon.BalloonTipText = "Minimized the app ";
-                    icon.ShowBalloonTip(timeout: 400);
                     icon.Visible = true;
                     break;
                 case WindowState.Normal:

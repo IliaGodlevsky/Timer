@@ -6,7 +6,11 @@ namespace Timer.Model
 {
     public sealed class LapTimer
     {
-        public DispatcherTimer DispatcherTimer { get; set; }
+        public event EventHandler Tick
+        {
+            add => DispatcherTimer.Tick += value;            
+            remove => DispatcherTimer.Tick -= value;            
+        }
 
         public bool IsEnabled => DispatcherTimer.IsEnabled;
 
@@ -42,6 +46,8 @@ namespace Timer.Model
         {
             DispatcherTimer.Stop();
         }
+
+        private DispatcherTimer DispatcherTimer { get; set; }
 
         private  DateTime startTime;
     }

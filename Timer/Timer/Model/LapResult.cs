@@ -26,7 +26,7 @@ namespace Timer.Model
         public override string ToString()
         {
             var lapNote = $"Lap: {LapNumber}; Time: ";
-            return lapNote + string.Format(TimerResources.DisplayFormat,
+            return string.Format(lapNote + TimerResources.DisplayFormat,
                     HoursPassed,
                     MinutesPassed,
                     SecondsPassed,

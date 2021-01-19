@@ -3,41 +3,57 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodel="clr-namespace:Timer.ViewModel"
+        xmlns:viewmodel="clr-namespace:Timer.ViewModel" 
+        xmlns:converters="clr-namespace:Timer.Converters"
         mc:Ignorable="d"
-        Title="Timer" MinWidth="450" MinHeight="250" Height="250" Width="450"
-        Background="Blue">
+        Title="Timer" MinWidth="450" MinHeight="250" Height="250" Width="450" Background="Blue">
     
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
 
+    <Window.Resources>
+        <converters:LapNumberConverter x:Key="lapNumberConverter"></converters:LapNumberConverter>
+    </Window.Resources>
+
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Menu>
-            <MenuItem Margin="4" Header="Timer mode"></MenuItem>
-            <MenuItem Margin="4" Header="Help"></MenuItem>
+        
+        <Menu Grid.Row="0">
+            <MenuItem Margin="5" Header="Timer mode"></MenuItem>
+            <MenuItem Margin="5" Header="Help"></MenuItem>
         </Menu>
+        
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
-            <Label Style="{StaticResource DisplayTimerStyle}" Content="{Binding LapNumber}"/>
+            <Label Style="{StaticResource DisplayTimerStyle}" Content="{Binding LapNumber, Converter={StaticResource lapNumberConverter}}"/>
             <Label Style="{StaticResource DisplayTimerStyle}" Content="{Binding TimerDisplay}"/>
         </StackPanel>
-        <ListView ItemsSource="{Binding LapResults}" Background="Pink" BorderBrush="Red" Margin ="10" Grid.Row="2"/>
+        
+        <ListView ItemsSource="{Binding LapResults}" Background="Pink" BorderBrush="Red" Margin ="10" Grid.Row="2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Style="{StaticResource LapResultStyle}" Text="{Binding}"></TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Command="{Binding StartTimerCommand}" Grid.Column ="0" Background="White"  Margin ="15">
-                <Image Width="20"  Source="/Resources/Images/start.png"></Image>
+            <Button Command="{Binding StartTimerCommand}" Style="{StaticResource TimerButtonStyle}">
+                <Image Width="35"  Source="/Resources/Images/start.png"></Image>
             </Button>
-            <Button Command="{Binding StopTimerCommand}"  Grid.Column ="1" Background="White"  Margin ="15">
-                <Image Width="20" Source="/Resources/Images/stop.png"></Image>
+            <Button Command="{Binding StopTimerCommand}" Style="{StaticResource TimerButtonStyle}">
+                <Image Width="35" Source="/Resources/Images/stop.png"></Image>
             </Button>
-            <Button Command="{Binding FixLapTimeCommand}" Grid.Column ="2" Background="White" Margin ="15">
-                <Image Width="20" Source="/Resources/Images/lap.png"></Image>
+            <Button Command="{Binding FixLapTimeCommand}" Style="{StaticResource TimerButtonStyle}">
+                <Image Width="35" Source="/Resources/Images/lap.png"></Image>
             </Button>
         </StackPanel>
+        
     </Grid>
 </Window>

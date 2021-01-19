@@ -33,14 +33,17 @@ namespace Timer.ViewModel
         public ICommand StopTimerCommand { get; }
         public ICommand FixLapTimeCommand { get; }
 
+        public NotifyIconHandler IconHandler { get; }
+
         public MainWindowViewModel()
         {
             TimerDisplay = TimerResources.DisplayDefaultView;
             LapResults = new ObservableCollection<LapResult>();
 
-            iconHandler = new NotifyIconHandler();
+            IconHandler = new NotifyIconHandler();
+
             lapTimer = new LapTimer(interval: 5);
-            lapTimer.DispatcherTimer.Tick += TimerEvent;
+            lapTimer.Tick += TimerEvent;
 
             StartTimerCommand = new RelayCommand(ExecuteStartTimerCommand, CanExecuteStartTimerCommand);
             StopTimerCommand = new RelayCommand(ExecuteStopTimerCommand, CanExecuteStopTimerCommand);
@@ -92,6 +95,5 @@ namespace Timer.ViewModel
         }
 
         private readonly LapTimer lapTimer;
-        private readonly NotifyIconHandler iconHandler;
     }
 }
